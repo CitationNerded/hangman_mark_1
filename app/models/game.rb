@@ -1,10 +1,17 @@
 class Game < ApplicationRecord
   has_many :guesses
-  has_one :answer
-  #put logic of correct/incorrect guess here. NOT IN DB
+  belongs_to :answer
 
-  #DB - separate out the game/guess structure
+  before_validation :assign_answer
 
   validates :lives, presence: true,
    numericality: { only_integer: true, maximum: 9 }
+
+  private
+
+  def assign_answer
+    unless answer
+      self.answer = Answer.find(Answer.pluck(:id).sample)
+    end
+  end
 end

@@ -1,4 +1,4 @@
-class GameController < ApplicationController
+class GamesController < ApplicationController
 
   # def game_setup
   #   @game = Game.new(lives: 10)
