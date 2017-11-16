@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lives: 1
+  correctguess: MyString
+  incorrectguess: MyString
+
+two:
+  lives: 1
+  correctguess: MyString
+  incorrectguess: MyString
