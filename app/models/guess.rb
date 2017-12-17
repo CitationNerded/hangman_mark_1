@@ -3,6 +3,7 @@ class Guess < ApplicationRecord
 
   validates :letter,
   presence: true,
+  uniqueness: true,
   format: {
     with: VALID_LETTER_REGEX,
     message: "must be a single alpha character",

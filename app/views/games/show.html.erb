@@ -1,6 +1,6 @@
 <h1>Welcome to Hangman</h1>
 <p>Find me in app/views/games/show.html.erb</p>
-
+<%= <%= button_to  "Restart", action: "new" %>
 <p>The word you have to guess is: <%= @game.answer.word %></p>
 <p>You have this many lives remaining: <%= @game.lives %></p>
 <p>Your guesses are: <%= @game.guesses.count %></p>
@@ -17,5 +17,13 @@
   <tr>
     <th>Answer Completed: </th>
     <th><%= @game.compare_answer %> </th>
+  </tr>
+  <tr>
+    <%= form_for(@game) do |f| %>
+      <%= f.label :letter %>
+      <%= f.text_field :letter, :value => ""%>
+      <%= f.submit "Submit"%>
+
+    <% end %>
   </tr>
 </table>

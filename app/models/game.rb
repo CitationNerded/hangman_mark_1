@@ -17,7 +17,6 @@ class Game < ApplicationRecord
 
   def compare_answer
     mask = ('_' * answer.word.length).strip.split("").join(' ')
-
     #This section needs a .each/.map.. potentially nested in a .each to go through
     #each guess & answer position and compare them...
   end
