@@ -29,6 +29,7 @@ class Game < ApplicationRecord
     end
   end
 
+  #before create may be more appropriate here
   def set_lives
     if guesses.count == 0
       self.lives = 9

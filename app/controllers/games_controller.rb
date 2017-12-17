@@ -4,10 +4,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     if @game.guesses.create!(letter: params[:game][:letter])
-      flash[:success] = "That Guess was valid"
       redirect_to @game
+      flash[:success] = "That Guess was valid"
     else
-      # Handle a successful update.
+      redirect_to @game # Handle a successful update.
       flash[:failure] = "Please input a valid guess"
     end
   end

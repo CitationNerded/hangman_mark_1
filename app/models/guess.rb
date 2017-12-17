@@ -3,7 +3,7 @@ class Guess < ApplicationRecord
 
   validates :letter,
   presence: true,
-  uniqueness: true,
+  uniqueness: true, #check to set a scope to uniqueness so it is only checking within the same game
   format: {
     with: VALID_LETTER_REGEX,
     message: "must be a single alpha character",
