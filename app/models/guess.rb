@@ -9,4 +9,14 @@ class Guess < ApplicationRecord
   }
 
   belongs_to :game
+  after_save :update_lives
+
+  def update_lives
+    if self.game.answer.word.include?(letter)
+      #self.game.lives
+    else
+      self.game.lives -= 1
+      self.game.save
+    end
+  end
 end
