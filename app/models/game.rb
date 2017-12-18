@@ -17,20 +17,15 @@ class Game < ApplicationRecord
 
   def compare_answer
     mask = ('_' * answer.word.length).strip.split("")
-    broken_answer = answer.word.strip.split("")
-    broken_answer.map{ |answer_letter| "_" unless answer_letter.include?(correct_guesses.map { |correct_letter| correct_letter.letter} )}
-    #byebug
-    # answer_split = answer.split("").map { |letter| letter}
-    # .answer.word.include?(params[:game][:letter])
-    #This section needs a .each/.map.. potentially nested in a .each to go through
-    #each guess & answer position and compare them...
   end
 
   def answer_split
     answer_mask = answer.word.split("").to_ary
+    answer_mask.map{ |answer_letter| answer_letter if (correct_guesses.map {
+      |correct_letter| correct_letter.letter} ).include? answer_letter}
 
-    #byebug
-   # answer_mask.map{ |answer_letter| answer_letter if answer_letter.include?(correct_guesses.each { |correct_letter| correct_letter.letter} )}
+    # This currently works but unrevealed answers are currently set to nil instead of "_".
+    # This is sufficient for functionality but not suitable for UX.
   end
 
   private
