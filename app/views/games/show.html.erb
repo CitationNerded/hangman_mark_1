@@ -1,5 +1,7 @@
 <h1>Welcome to Hangman</h1>
+  <div class="col-md-6 col-md-offset-3">
 <p>Find me in app/views/games/show.html.erb</p>
+<%= button_to "New Game", action: "create"%>
 
 <p>The word you have to guess is: <%= @game.answer.word %></p>
 <p>You have this many lives remaining: <%= @game.lives %></p>
@@ -8,7 +10,7 @@
 <table>
   <tr>
     <th>Your Incorrect Guesses are: </th>
-    <th><%= @game.incorrect_guesses.map(&:letter).join(', ') %> </th>
+    <th> <%= @game.incorrect_guesses.map(&:letter).join(', ') %> </th>
   </tr>
   <tr>
     <th>Valid Guesses: </th>
@@ -19,11 +21,27 @@
     <th><%= @game.compare_answer %> </th>
   </tr>
   <tr>
+      <th>Actual Answer: </th>
+    <th><%= @game.answer_split %> </th>
+  </tr>
+  <tr>
     <%= form_for(@game) do |f| %>
+    <%= render 'shared/error_messages' %>
+
       <%= f.label :letter %>
-      <%= f.text_field :letter, :value => ""%>
-      <%= f.submit "Submit"%>
+      <%= f.text_field :letter, :value => "", class: 'form-control', :maxlength => 1%>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+
+      <% if flash[:success]%>
+        <div class="alert alert-success"><%= flash[:success] %></div>
+      <% end %>
+      <% if flash[:failure]%>
+        <div class="alert alert-failure"><%= flash[:failure] %></div>
+      <% end %>
 
     <% end %>
   </tr>
+  <tr>
+  </tr>
 </table>
+</div>

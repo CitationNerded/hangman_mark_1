@@ -16,9 +16,21 @@ class Game < ApplicationRecord
   end
 
   def compare_answer
-    mask = ('_' * answer.word.length).strip.split("").join(' ')
+    mask = ('_' * answer.word.length).strip.split("")
+    broken_answer = answer.word.strip.split("")
+    broken_answer.map{ |answer_letter| "_" unless answer_letter.include?(correct_guesses.map { |correct_letter| correct_letter.letter} )}
+    #byebug
+    # answer_split = answer.split("").map { |letter| letter}
+    # .answer.word.include?(params[:game][:letter])
     #This section needs a .each/.map.. potentially nested in a .each to go through
     #each guess & answer position and compare them...
+  end
+
+  def answer_split
+    answer_mask = answer.word.split("").to_ary
+
+    #byebug
+   # answer_mask.map{ |answer_letter| answer_letter if answer_letter.include?(correct_guesses.each { |correct_letter| correct_letter.letter} )}
   end
 
   private
