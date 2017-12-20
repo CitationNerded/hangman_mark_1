@@ -28,6 +28,16 @@ class Game < ApplicationRecord
     # This is sufficient for functionality but not suitable for UX.
   end
 
+  def win_condition
+    if (answer_split - correct_guesses.pluck(:letter)).empty?
+      return 1
+    elsif lives <= 0
+      return -1
+    else
+      return 0
+    end
+  end
+
   private
 
   def assign_answer

@@ -1,27 +1,28 @@
 <h1>Welcome to Hangman</h1>
 <div class="col-md-6 col-md-offset-3">
-<%= button_to "New Game", action: "create"%>
+  <%= button_to "New Game", action: "create"%>
 
-<p>The word you have to guess is: <%= @game.answer.word %></p>
-<p>You have this many lives remaining: <%= @game.lives %></p>
-<p>Your guesses are: <%= @game.guesses.count %></p>
+  <p>The word you have to guess is: <%= @game.answer.word %>.</p>
+  <p>You have <%= @game.lives %> lives remaining. </p>
+  <p>You have made <%= @game.guesses.count %> guesses.</p>
 
-<table>
-  <tr>
-    <th>Your Incorrect Guesses are: </th>
-    <th> <%= @game.incorrect_guesses.map(&:letter).join(', ') %> </th>
-  </tr>
-  <tr>
-    <th>Valid Guesses: </th>
-    <th><%= @game.correct_guesses.map(&:letter).join(', ') %> </th>
-  </tr>
-  <tr>
-    <th>Answer Completed: </th>
-    <th><%= @game.answer_split %> </th>
-  </tr>
-  <tr>
-    <%= form_for(@game) do |f| %>
-    <%= render 'shared/error_messages' %>
+  <table>
+    <tr>
+      <th>Incorrect Guesses: </th>
+      <th> <%= @game.incorrect_guesses.map(&:letter).join(', ') %> </th>
+    </tr>
+    <tr>
+      <th>Correct Guesses: </th>
+      <th><%= @game.correct_guesses.map(&:letter).join(', ') %> </th>
+    </tr>
+    <tr>
+      <th>Answer Completed: </th>
+      <th> <%= @game.answer_split %> </th>
+    </tr>
+    <tr>
+      <%= form_for(@game) do |f| %>
+      <%= render 'shared/error_messages' %>
+
 
       <%= f.label :letter %>
       <%= f.text_field :letter, :value => "", class: 'form-control', :maxlength => 1%>
@@ -29,9 +30,15 @@
 
       <% if flash[:success]%>
         <div class="alert alert-success"><%= flash[:success] %></div>
+        <% if flash[:win]%>
+          <%= render "shared/successful_game" %>
+        <% end %>
       <% end %>
-      <% if flash[:failure]%>
-        <div class="alert alert-failure"><%= flash[:failure] %></div>
+      <% if flash[:incorrect]%>
+        <div class="alert alert-failure"><%= flash[:incorrect] %></div>
+        <% if flash[:loss]%>
+          <%= render "shared/unsuccessful_game" %>
+        <% end %>
       <% end %>
 
     <% end %>

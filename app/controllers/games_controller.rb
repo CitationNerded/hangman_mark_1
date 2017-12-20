@@ -1,16 +1,25 @@
 class GamesController < ApplicationController
+  #require GameLogic
 
   def update
     @game = Game.find(params[:id])
-    @game.guesses.create!(letter: params[:game][:letter])
-    #byebug
-    if @game.answer.word.include?(params[:game][:letter])
-      flash[:success] = "That Guess was correct"
-
-    else #if @game.incorrect_guesses.include?(params[:game][:letter])
-      flash[:failure] = "That Guess was incorrect :("
+    @game.guesses.create(letter: params[:game][:letter])
+    if @game.save
+      if @game.answer.word.include?(params[:game][:letter])
+        flash[:success] = "That Guess was correct"
+        if (@game.win_condition.equal?(1))
+          flash[:win] = ""
+        end
+      else
+        flash[:incorrect] = "That Guess was incorrect :("
+        if (@game.win_condition.equal?(-1))
+          flash[:loss] = ""
+        end
+      end
+      redirect_to @game
+    else
+      render 'show'
     end
-    redirect_to @game
   end
 
   def destroy
