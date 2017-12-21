@@ -1,0 +1,14 @@
+<!-- <p>The word you have to guess is: <%= @game.answer.word %>.</p> -->
+<p>You have <%= @game.lives %> lives remaining. </p>
+<!-- <p>You have made <%= @game.guesses.count %> guesses.</p> -->
+<p>Incorrect Guesses: <%= @game.incorrect_guesses.map(&:letter).join(', ') %></p>
+<!-- <p>Correct Guesses: <%= @game.correct_guesses.map(&:letter).join(', ') %></p> -->
+<p>Answer Completed:
+  <% @game.answer_split.each do |answer|%>
+    <%  if answer.nil? %>
+      <%='_'%>
+    <% else %>
+      <%= answer %>
+    <% end %>
+  <% end %>
+</p>

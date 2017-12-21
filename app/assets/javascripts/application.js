@@ -13,5 +13,3 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-(".alert" ).fadeOut(30);
-(".alert-success" ).fadeOut(30);
