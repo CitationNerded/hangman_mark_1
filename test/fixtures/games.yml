@@ -2,10 +2,6 @@
 
 one:
   lives: 1
-  correctguess: MyString
-  incorrectguess: MyString
 
 two:
   lives: 1
-  correctguess: MyString
-  incorrectguess: MyString

@@ -9,6 +9,7 @@ class Guess < ApplicationRecord
     message: "must be a single alpha character",
   }
 
+
   belongs_to :game
   after_save :update_lives
 
