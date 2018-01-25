@@ -34,7 +34,6 @@ Then("I should see a congratulations message") do
 end
 
 Then("I should see a failure message") do
-  byebug
   expect(page).to have_content("How did you lose?")
   #pending # Write code here that turns the phrase above into concrete actions
 end
