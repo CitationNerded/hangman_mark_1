@@ -19,14 +19,14 @@ browser: "phantomjs"
 
 # (required) The domain to take screenshots of.
 domains:
-  english: "https://www.dndbeyond.com"
+  english: "https://tranquil-fjord-30681.herokuapp.com"
 
 # (required) The paths to capture. This particular config is using casperjs, so we can take screenshots of selectors rather than the entire page.
 paths:
   clickable_guide:
     path: /
 # (optional) JavaScript file to execute before taking screenshot of every path. Default: nil
-before_capture: 'javascript/wait--casper.js'
+#before_capture: 'javascript/wait--casper.js'
 
 # (required) Screen widths (and optional height) to resize the browser to before taking the screenshot.
 screen_widths:

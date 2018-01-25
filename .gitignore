@@ -22,3 +22,7 @@
 
 .byebug_history
 .DS_Store
+
+#Ignore wraith generated image files
+/shots
+/shots_base

@@ -11,26 +11,32 @@
 
 # Add as many domains as necessary. Key will act as a label
 domains:
-  my_site:       "localhost:3000"
+  my_site:       "https://tranquil-fjord-30681.herokuapp.com"
+  my_same_site: "http://127.0.0.1:3001"
 
 # Notice the absence of a `paths` property. When no paths are provided, Wraith defaults to
 # spidering mode to check your entire website.
-
+# paths:
+#   my_paths:
+#     path: /
+#     path: /help
+#     path: /login
 # A list of URLs to skip when spidering.
 # Ruby regular expressions can be used, if prefixed with `!ruby/regexp` as defined in the YAML Cookbook​.
 # See http://www.yaml.org/YAML_for_ruby.html#regexps
-spider_skips:
-  - /foo/bar.html           # Matches /foo/bar.html explicitly
-  - !ruby/regexp /^\/baz\// # Matches any URLs that start with /baz
+#spider_skips:
+#  - /foo/bar.html           # Matches /foo/bar.html explicitly
+#  - !ruby/regexp /^\/baz\// # Matches any URLs that start with /baz
 
 # the filename of the spider file to use. Default: spider.txt
 spider_file: example_com_spider.txt
 
+imports: "spider_paths.yml"
 # the number of days to keep the site spider file
 spider_days: 10
 
 # amount of fuzz ImageMagick will use when comparing images. A higher fuzz makes the comparison less strict.
-fuzz: '20%'
+fuzz: '2%'
 
 # the maximum acceptable level of difference (in %) between two images.
 # Wraith considers it a failure if an image diff goes above this threshold.
@@ -43,6 +49,11 @@ screen_widths:
   - 768
   - 1024
   - 1280
+
+gallery:
+  template: 'slideshow_template' # or 'basic_template' (which is the default)​
+  thumb_width: 200 # default​
+  thumb_height: 200 # default​
 
 # the engine to run Wraith with.
 browser: "phantomjs"

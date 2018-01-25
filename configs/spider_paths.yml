@@ -1,0 +1,8 @@
+---
+paths:
+  home: "/"
+  __about: "/about"
+  __contact: "/contact"
+  __signup: "/signup"
+  __help: "/help"
+  __login: "/login"

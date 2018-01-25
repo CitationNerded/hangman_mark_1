@@ -17,8 +17,8 @@ browser: "phantomjs"
 
 # (required) The domains to take screenshots of.
 domains:
-  current:  "https://www.dndbeyond.com"
-  new:      "https://www.dndbeyond.com"
+  current:  "https://tranquil-fjord-30681.herokuapp.com"
+  new:      "https://tranquil-fjord-30681.herokuapp.com"
 
 # (required) The paths to capture. All paths should exist for both of the domains specified above.
 paths:
