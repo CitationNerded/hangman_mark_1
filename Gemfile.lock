@@ -179,6 +179,19 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.4)
@@ -198,6 +211,8 @@ GEM
     shellany (0.0.1)
     spring (2.0.2)
       activesupport (>= 4.2)
+    spring-commands-cucumber (1.0.1)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -238,6 +253,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  cucumber
   cucumber-rails
   database_cleaner
   guard (= 2.13.0)
@@ -246,9 +262,11 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
   rails (~> 5.1.4)
+  rspec
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
+  spring-commands-cucumber
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   turbolinks (~> 5)
