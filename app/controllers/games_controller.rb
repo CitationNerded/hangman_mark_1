@@ -37,5 +37,6 @@ class GamesController < ApplicationController
     @game = Game.create!
     redirect_to @game
   end
-
+  def index
+  end
 end
