@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class GuessTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+   test "guesses must be unique to the game" do
+   end
 end

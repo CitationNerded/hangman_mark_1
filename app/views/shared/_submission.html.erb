@@ -1,9 +1,10 @@
 <%= form_for(@game) do |f| %>
   <%= render 'shared/error_messages' %>
   <%= f.label :letter %>
-  <%= f.text_field :letter, :value => "", class: 'form-control', :maxlength => 1%>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
-
+  <table>
+  <th> <%= f.text_field :letter, :value => "", class: 'text_field', :maxlength => 1%> </th>
+  <th> <%= f.submit "Submit", class: "button" %> </th>
+  </table>
   <% if flash[:success]%>
     <div class="alert alert-success"><%= flash[:success] %></div>
     <% if flash[:win]%>

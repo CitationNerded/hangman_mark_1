@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  INITIAL_LIVES = 8
+  INITIAL_LIVES = 7
 
   has_many :guesses
   belongs_to :answer
@@ -9,8 +9,7 @@ class Game < ApplicationRecord
   validates :lives, presence: true,
    numericality: { only_integer: true, maximum: 9 }
 
-# it can provide a default value here (instead of using a constant where possible
-  def incorrect_guesses
+   def incorrect_guesses
     guesses.select{ |guess| guess.letter if answer.word.exclude?(guess.letter)}
   end
 
@@ -23,13 +22,11 @@ class Game < ApplicationRecord
     answer_mask = answer.word.split("").to_ary
     answer_mask.map{ |answer_letter| answer_letter if (correct_guesses.map {
       |correct_letter| correct_letter.letter} ).include? answer_letter }
-
-    # This currently works but unrevealed answers are currently set to nil instead of "_".
-    # This is sufficient for functionality but not suitable for UX.
-    # EDIT: Andrew helped me and now it does this at a view layer.
   end
 
   def win_condition
+    # values here are used as a form of 'state machine' to manage the 3 possible states the game can have.
+    # Ideally i would like to make it so additional guesses cannot be made one a game reaches win or loss conditions
     if (answer_split - correct_guesses.pluck(:letter)).empty?
       return 1
     elsif lives <= 0
@@ -47,7 +44,6 @@ class Game < ApplicationRecord
     end
   end
 
-  #before create may be more appropriate here
   def set_lives
     if guesses.count == 0
       self.lives = INITIAL_LIVES

@@ -16,7 +16,7 @@ class GamesController < ApplicationController
           flash[:loss] = ""
         end
       end
-      redirect_to @game
+      render 'show'
     else
       render 'show'
     end
