@@ -4,6 +4,7 @@
      duplicate guesses will be shown here as the front end re-renders the view before the backend has
     valided against the input, so you end up with a phantom input that isnt persisted in the database,
     dissapears upon submission of the next input, but still shows up in the first place. -->
+<p>Your Answer is: <%= @game.answer.word %></p>
 <p>Incorrect Guesses: <%= @game.incorrect_guesses.map(&:letter).join(', ') %></p>
 <p>Answer Completed:
   <% @game.answer_split.each do |answer|%>
