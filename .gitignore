@@ -26,3 +26,6 @@
 #Ignore wraith generated image files
 /shots
 /shots_base
+
+# OSX Crap
+.DS_Store
