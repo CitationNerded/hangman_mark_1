@@ -10,11 +10,11 @@ class Game < ApplicationRecord
    numericality: { only_integer: true, maximum: 9 }
 
    def incorrect_guesses
-    guesses.map(&:letter).select{ |letter| answer.word.exclude?(letter)}
+    guesses.select{ |guess| answer.word.exclude?(guess.letter)}
   end
 
   def correct_guesses
-    guesses.map(&:letter).select{ |letter| answer.word.include?(letter)}
+    guesses.select{ |guess| answer.word.include?(guess.letter)}
   end
 
   # Try and split out the two maps to make this easier to read
