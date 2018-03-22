@@ -18,6 +18,7 @@ class GamesController < ApplicationController
       end
       render 'show'
     else
+      @game.reload
       render 'show'
     end
   end
