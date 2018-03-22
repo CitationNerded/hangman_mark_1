@@ -3,7 +3,19 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.guesses.create(letter: params[:game][:letter])
+
+    submitter = SubmitGuess.new(@game, params[:game][:letter])
+
+    result = submitter.call
+
+    if result.error?
+
+    else
+      if result.won?
+
+      end
+    end
+
 
     if @game.save
       # Think about wrapping this up:

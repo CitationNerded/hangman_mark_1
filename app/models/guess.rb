@@ -16,18 +16,20 @@ class Guess < ApplicationRecord
   validate :has_lives, on: :create
   after_save :update_lives
 
-  def update_lives
-    if self.game.answer.word.include?(letter)
-      self.game.lives
-    else
-      self.game.lives -= 1
-      self.game.save unless self.game.valid?
-    end
-  end
 
-  def has_lives
-    if self.game.lives <= 0
-      errors.add(:loss, "You're out of lives buster.")
-    end
-  end
+  # This business logic, not data validation.
+
+  # Validations verify that our stored data doesn't become malformed or
+  # nonsensical.
+
+  # Business logic is for deciding legitimate application state.
+
+  # In this case, it's a perfectly valid state for the user to have 0
+  # lives, that just means they've lost the game.
+
+  # def has_lives
+  #   if game.lives <= 0
+  #     errors.add(:loss, "You're out of lives buster.")
+  #   end
+  # end
 end
