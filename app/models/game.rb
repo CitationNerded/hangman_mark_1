@@ -10,13 +10,14 @@ class Game < ApplicationRecord
    numericality: { only_integer: true, maximum: 9 }
 
    def incorrect_guesses
-    guesses.select{ |guess| guess.letter if answer.word.exclude?(guess.letter)}
+    guesses.map(&:letter).select{ |letter| answer.word.exclude?(letter)}
   end
 
   def correct_guesses
-    guesses.select{ |guess| guess.letter if answer.word.include?(guess.letter)}
+    guesses.map(&:letter).select{ |letter| answer.word.include?(letter)}
   end
 
+  # Try and split out the two maps to make this easier to read
   def answer_split
     mask = '_'
     answer_mask = answer.word.split("").to_ary
@@ -24,19 +25,35 @@ class Game < ApplicationRecord
       |correct_letter| correct_letter.letter} ).include? answer_letter }
   end
 
+  def word_includes?(letter)
+    answer.word.include?(letter)
+  end
+
+  # Higher level:
+  def won?
+    win_condition.equal?(:won)
+  end
+
+  def lost?
+    win_condition.equal?(:lost)
+  end
+
+  private
+
+  # Quite low-level
+  # Also think about non-numeric ways to represent the return value
+  # Also try and make invalid states impossible to represent
   def win_condition
     # values here are used as a form of 'state machine' to manage the 3 possible states the game can have.
     # Ideally i would like to make it so additional guesses cannot be made one a game reaches win or loss conditions
     if (answer_split - correct_guesses.pluck(:letter)).empty?
-      return 1
+      :won
     elsif lives <= 0
-      return -1
+      :lost
     else
-      return 0
+      :playing
     end
   end
-
-  private
 
   def assign_answer
     unless answer

@@ -7,14 +7,14 @@
   </table>
   <% if flash[:success]%>
     <div class="alert alert-success"><%= flash[:success] %></div>
-    <% if flash[:win]%>
+    <% if @game.won? %>
       <%= render "shared/successful_game" %>
     <% end %>
   <% end %>
 
   <% if flash[:incorrect]%>
     <div class="alert alert-warning"><%= flash[:incorrect] %></div>
-    <% if flash[:loss]%>
+    <% if @game.lost? %>
       <%= render "shared/unsuccessful_game" %>
     <% end %>
   <% end %>
