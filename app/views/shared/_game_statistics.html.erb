@@ -6,8 +6,10 @@
     dissapears upon submission of the next input, but still shows up in the first place. -->
 <p>Your Answer is: <%= @game.answer.word %></p>
 <p>Incorrect Guesses: <%= @game.incorrect_guesses.map(&:letter).join(', ') %></p>
+<p> Correct Guesses: <%= @game.correct_guesses.map(&:letter).join(', ') %>
+<p>Answer Split: <%= @game.answer_split %></p>
 <p>Answer Completed:
-  <% @game.answer_split.each do |answer|%>
+  <% @game.answer_split.each do |answer| %>
     <%  if answer.nil? %>
       <%='_'%>
     <% else %>

@@ -3,23 +3,25 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.guesses.create(letter: params[:game][:letter])
-    if @game.save
-      if @game.answer.word.include?(params[:game][:letter])
-        flash[:success] = "That Guess was correct"
-        if (@game.win_condition.equal?(1))
-          flash[:win] = ""
-        end
-      else
-        flash[:incorrect] = "That Guess was incorrect :("
-        if (@game.win_condition.equal?(-1))
-          flash[:loss] = ""
+    submitter = SubmitGuess.new(@game, params[:game][:letter])
+
+    result = submitter.call
+
+    if result.state == "Error"
+      flash.now[:error] = result.message
+    else
+      if @game.save
+        if @game.word_includes?(params[:game][:letter])
+          flash.now[:state] = result.message
+          #flash.now[:won] = result.state if @game.won?
+        else
+          flash.now[:state] = result.message
+          #flash.now[:lost] = result.state if @game.lost?
         end
       end
-      render 'show'
-    else
-      render 'show'
     end
+    @game.reload
+    render 'show'
   end
 
   def destroy

@@ -2,20 +2,18 @@
   <%= render 'shared/error_messages' %>
   <%= f.label :letter %>
   <table>
-  <th> <%= f.text_field :letter, :value => "", class: 'text_field', :maxlength => 1%> </th>
-  <th> <%= f.submit "Submit", class: "button" %> </th>
+    <th> <%= f.text_field :letter, :value => "", class: 'text_field', :maxlength => 1%> </th>
+    <th> <%= f.submit "Submit", class: "button" %> </th>
   </table>
-  <% if flash[:success]%>
-    <div class="alert alert-success"><%= flash[:success] %></div>
-    <% if flash[:win]%>
-      <%= render "shared/successful_game" %>
-    <% end %>
-  <% end %>
-
-  <% if flash[:incorrect]%>
-    <div class="alert alert-warning"><%= flash[:incorrect] %></div>
-    <% if flash[:loss]%>
-      <%= render "shared/unsuccessful_game" %>
+  <% if @game.won? %>
+    <%= render "shared/successful_game" %>
+  <% elsif @game.lost?%>
+    <%= render "shared/unsuccessful_game" %>
+  <% else %>
+    <% if @game %>
+      <div class="alert alert-success"><%= flash[:state] %></div>
+    <% else %>
+      <div class="alert alert-warning"><%= flash[:state] %></div>
     <% end %>
   <% end %>
 <% end %>
