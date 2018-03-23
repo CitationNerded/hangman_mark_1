@@ -1,8 +1,5 @@
 <p>You have <%= @game.lives %> lives remaining. </p>
-<!-- <p>Your Answer is: <%= @game.answer.word %></p> -->
 <p>Incorrect Guesses: <%= @game.incorrect_guesses.map(&:letter).join(', ') %></p>
-<!-- <p> Correct Guesses: <%= @game.correct_guesses.map(&:letter).join(', ') %> -->
-<!-- <p>Answer Split: <%= @game.answer_split %></p> -->
 <p>Answer Completed:
   <% @game.answer_split.each do |answer| %>
     <%  if answer.nil? %>
