@@ -1,19 +1,23 @@
 <%= form_for(@game) do |f| %>
-  <%= render 'shared/error_messages' %>
-  <%= f.label :letter %>
-  <table>
-    <th> <%= f.text_field :letter, :value => "", class: 'text_field', :maxlength => 1%> </th>
-    <th> <%= f.submit "Submit", class: "button" %> </th>
-  </table>
-  <% if @game.won? %>
-    <%= render "shared/successful_game" %>
-  <% elsif @game.lost?%>
-    <%= render "shared/unsuccessful_game" %>
+<% if @game.playing? %>
+<%= f.label :letter %>
+<table>
+  <th> <%= f.text_field :letter, :value => "", class: 'text_field', :maxlength => 1%> </th>
+  <th> <%= f.submit "Submit", class: "button" %> </th>
+</table>
+<% end %>
+<%= render 'shared/error_messages' %>
+<% if @game.won? %>
+<%= render "shared/successful_game" %>
+<% elsif @game.lost?%>
+<%= render "shared/unsuccessful_game" %>
   <% else %>
-    <% if @game %>
+    <% if flash[:state] == "That was a Correct Guess" %>
       <div class="alert alert-success"><%= flash[:state] %></div>
-    <% else %>
+    <% elsif flash[:state] == "That was an Incorrect Guess"%>
       <div class="alert alert-warning"><%= flash[:state] %></div>
+    <% else%>
+      <%= flash[:state] %>
     <% end %>
   <% end %>
 <% end %>

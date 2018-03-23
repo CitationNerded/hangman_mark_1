@@ -1,5 +1,5 @@
 <% if @game.errors.any? %>
-  <div>
+  <div class="alert alert-warning">
     <div>
       The form contains <%= pluralize(@game.errors.count, "error") %>.
     </div>

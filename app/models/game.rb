@@ -27,7 +27,6 @@ class Game < ApplicationRecord
 
   def word_includes?(letter)
     answer.word.include?(letter)
-    #byebug
   end
 
   def won?
@@ -36,6 +35,10 @@ class Game < ApplicationRecord
 
   def lost?
     win_condition.equal?(:lost)
+  end
+
+  def playing?
+    win_condition.equal?(:playing)
   end
 
   private

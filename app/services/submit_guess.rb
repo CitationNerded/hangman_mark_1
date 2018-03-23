@@ -2,10 +2,8 @@ class SubmitGuess
       attr_reader :errors, :game, :letter
 
       def initialize(game, letter)
-        #byebug
         @game = game
         @letter = letter
-        @result = Result # Could make an actual object that represents result
       end
 
       def call

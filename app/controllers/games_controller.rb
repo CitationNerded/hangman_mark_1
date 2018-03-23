@@ -10,15 +10,7 @@ class GamesController < ApplicationController
     if result.state == "Error"
       flash.now[:error] = result.message
     else
-      if @game.save
-        if @game.word_includes?(params[:game][:letter])
-          flash.now[:state] = result.message
-          #flash.now[:won] = result.state if @game.won?
-        else
-          flash.now[:state] = result.message
-          #flash.now[:lost] = result.state if @game.lost?
-        end
-      end
+      flash.now[:state] = result.message
     end
     @game.reload
     render 'show'
@@ -37,6 +29,5 @@ class GamesController < ApplicationController
   end
 
   def index
-
   end
 end
